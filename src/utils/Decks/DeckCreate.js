@@ -8,16 +8,19 @@ import {
   useParams,
   useRouteMatch,
 } from "react-router-dom";
-import { createDeck } from '../../utils/api';
+import { createDeck } from "../../utils/api";
 import DeckForm from "./DeckForm";
 
 function DeckCreate() {
   const history = useHistory();
 
-  function submitHandler(deck) {
+  function addDeck(deck) {
     createDeck(deck).then((savedDeck) =>
       history.push(`/decks/${savedDeck.id}`)
     );
+  }
+  function handleCancelClick() {
+    history.push("/"); // cancel button redirects to home screen
   }
 
   return (
@@ -35,7 +38,11 @@ function DeckCreate() {
         </ol>
       </nav>
       <h1>Create Deck</h1>
-      <DeckForm onSubmit={submitHandler}/>
+      <DeckForm
+        onSubmit={addDeck}
+        onCancel={handleCancelClick}
+        initialFormData={{ name: "", description: "" }}
+      />
     </div>
   );
 }

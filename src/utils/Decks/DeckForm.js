@@ -9,26 +9,28 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 
-function DeckForm({onSubmit}) {
-  const emptyFormData={name:"", description:""}
-  const [deck, setDeck] = useState(emptyFormData);
-  const history=useHistory();
+function DeckForm({ onSubmit, onCancel, initialFormData }) {
+  const [formData, setFormData] = useState(initialFormData);
+  console.log(initialFormData);
 
   const handleChange = ({ target }) => {
-    setDeck({
-      ...deck,
+    setFormData({
+      ...formData,
       [target.name]: target.value,
     });
   };
 
-  //handle submit button- ,preventDefault,reset form to be blank, call async onSubmit fxn 
+  //handle submit button- ,preventDefault,reset form to be blank
   const handleSubmit = (event) => {
     event.preventDefault();
-    setDeck({emptyFormData})
-    onSubmit(deck)
-    
+    event.stopPropagation();
+    console.log(formData)
+    onSubmit(formData);
+    setFormData(initialFormData)
   };
-//create a form with two inputs (text and textarea) for the deck name and description
+
+  console.log(formData.name)
+  //create a form with two inputs (text and textarea) for the deck name and description
   return (
     <>
       <form onSubmit={handleSubmit} className="deck-form">
@@ -40,8 +42,8 @@ function DeckForm({onSubmit}) {
               id="name"
               name="name"
               className="form-control"
-              value={deck.name}
-              required={true}
+              value={formData.name}
+              required
               placeholder="Deck Name"
               onChange={handleChange}
             />
@@ -53,17 +55,18 @@ function DeckForm({onSubmit}) {
               name="description"
               className="form-control"
               rows="4"
-              required={true}
+              value={formData.description}
+              required
               placeholder="Brief description of the deck."
-              value={deck.description}
               onChange={handleChange}
             />
           </div>
           <button
             type="button"
             className="btn btn-secondary mr-2"
-            onClick={()=>history.push("/")}
-          >Cancel
+            onClick={onCancel}
+          >
+            Cancel
           </button>
           <button type="submit" className="btn btn-primary">
             Submit

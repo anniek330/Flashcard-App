@@ -1,13 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { createDeck } from "../../utils/api";
 import DeckForm from "./DeckForm";
 

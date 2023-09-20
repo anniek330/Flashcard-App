@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
-import DeckView from "./DeckView";
+import { Link } from "react-router-dom";
 import { listDecks, deleteDeck } from "../api";
 
 //maps over each deck to show name and description
@@ -31,7 +21,7 @@ function DeckList() {
     }
   }
 
-  // decks.map 
+  // decks.map
 
   const deckList = decks.map((deck) => (
     <li

@@ -1,13 +1,4 @@
-import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import React, { useState } from "react";
 
 function DeckForm({ onSubmit, onCancel, initialFormData }) {
   const [formData, setFormData] = useState(initialFormData);
@@ -26,7 +17,6 @@ function DeckForm({ onSubmit, onCancel, initialFormData }) {
     onSubmit(formData);
   };
 
-  
   //create a form with two inputs (text and textarea) for the deck name and description
   return (
     <div>

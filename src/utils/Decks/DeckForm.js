@@ -23,16 +23,13 @@ function DeckForm({ onSubmit, onCancel, initialFormData }) {
   //handle submit button- ,preventDefault,reset form to be blank
   const handleSubmit = (event) => {
     event.preventDefault();
-    event.stopPropagation();
-    console.log(formData)
     onSubmit(formData);
-    setFormData(initialFormData)
   };
 
-  console.log(formData.name)
+  
   //create a form with two inputs (text and textarea) for the deck name and description
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit} className="deck-form">
         <fieldset>
           <div className="form-group">
@@ -73,7 +70,7 @@ function DeckForm({ onSubmit, onCancel, initialFormData }) {
           </button>
         </fieldset>
       </form>
-    </>
+    </div>
   );
 }
 

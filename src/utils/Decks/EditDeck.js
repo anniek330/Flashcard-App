@@ -32,7 +32,11 @@ function EditDeck() {
   }
 
   const child = deck.id ? (
-    <DeckForm onCancel={handleCancel} onSubmit={editDeck} initialState={deck} />
+    <DeckForm
+      onCancel={handleCancel}
+      onSubmit={editDeck}
+      initialFormData={deck}
+    />
   ) : (
     <p>Loading...</p>
   );

@@ -11,16 +11,18 @@ import {
 import { deleteCard, deleteDeck, readDeck } from "../../utils/api";
 import CardList from "../Cards/CardList";
 
+// /decks/deckId: shows deck's name and description, has a list of all the cards in deck 
+
 function Deck() {
   const { deckId } = useParams();
   const [deck, setDeck] = useState({cards: []});
   const history = useHistory();
 
-//get data from readDeck fxn
-  function fetchData() {
+//get data from readDeck 
+  function fetchDeckData() {
     readDeck(deckId).then((data) => setDeck(data));
   }
-  useEffect(fetchData, [deckId]);
+  useEffect(fetchDeckData, [deckId]);
 
   //add a delete Handler for the deck then use history to return home
   function handleDelete() {
@@ -33,12 +35,12 @@ function Deck() {
   }
   
   //delete a card
-  function deleteCardHandler(cardId) {
+  function handleCardDelete(cardId) {
     const confirmed = window.confirm(
       "Delete this card?\n\nYou will not be able to recover it."
     );
     if (confirmed) {
-      deleteCard(cardId).then(fetchData);
+      deleteCard(cardId).then(fetchDeckData);
     }
   }
   return (
@@ -82,7 +84,7 @@ function Deck() {
       <button className="btn btn-danger float-right">
         <span className="oi oi-trash p-1" onClick={handleDelete} />
       </button>
-      <CardList deck={deck} onCardDelete={deleteCardHandler} /> 
+      <CardList deck={deck} onCardDelete={handleCardDelete} /> 
     </main>
   );
 }

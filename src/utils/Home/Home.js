@@ -3,6 +3,8 @@ import { Link, Route } from "react-router-dom";
 import DeckCreate from "../Decks/DeckCreate";
 import DeckList from "../Decks/DeckList";
 
+//shows a Create Deck button and a list of all the decks (name and description)
+
 function Home() {
   return (
     <div>

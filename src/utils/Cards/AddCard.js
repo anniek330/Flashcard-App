@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import CardForm from "./CardForm";
 import { createCard, readDeck } from "../../utils/api";
 
@@ -21,8 +13,11 @@ function AddCard() {
   }, [deckId]);
 
   function newCard(card) {
-    createCard(deckId, card);
+    createCard(deckId, card).then(() => {
+      history.go(0);
+    });
   }
+
   function handleDone() {
     history.push(`/decks/${deckId}`);
   }
@@ -47,7 +42,7 @@ function AddCard() {
       <h1>{deck.name}: Add Card</h1>
       <CardForm
         deckName={deck.name}
-        initialState={deck}
+        initialCardFormData={deck}
         onSubmit={newCard}
         onDone={handleDone}
         doneButtonLabel="Done"

@@ -2,38 +2,38 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { listDecks, deleteDeck } from "../api";
 
-//maps over each deck to show name and description
+//maps over each deck to show name and description with links to view and study the deck- delete btn 
 
 function DeckList() {
-  const [decks, setDecks] = useState([]);
+  const [listOfDecks, setListOfDecks] = useState([]);
 
-  function fetchListDecksData() {
-    listDecks().then((data) => setDecks(data));
+  function fetchDeckList() {
+    listDecks().then((data) => setListOfDecks(data));
   }
-  useEffect(fetchListDecksData, []);
+  useEffect(fetchDeckList, []);
 
   function handleDelete(deckId) {
     const confirmed = window.confirm(
       "Delete this deck?\n\nYou will not be able to recover it."
     );
     if (confirmed) {
-      deleteDeck(deckId).then(fetchListDecksData);
+      deleteDeck(deckId).then(fetchDeckList);
     }
   }
 
   // decks.map
 
-  const deckList = decks.map((deck) => (
+  const deckList = listOfDecks.map((deck) => (
     <li
       key={deck.id}
       className="list-group-item list-group-item-action flex-column align-items-start"
     >
       <div className="d-flex w-100 justify-content-between">
-        <h5 className="mb-1">{deck.name}</h5>
+        <h3 className="mb-6">{deck.name}</h3>
         <small>{deck.cards.length} cards</small>
       </div>
-      <p className="mb-1">{deck.description}</p>
-      <Link to={`/decks/${deck.id}`} className="btn btn-secondary mr-2">
+      <p className="mb-10">{deck.description}</p>
+      <Link to={`/decks/${deck.id}`} className="btn btn-secondary mr-3">
         <span className="oi oi-eye" /> View
       </Link>
       <Link to={`/decks/${deck.id}/study`} className="btn btn-primary">
@@ -53,7 +53,3 @@ function DeckList() {
 
 export default DeckList;
 
-{
-  /* <DeckView  
-    deleteDeck={() => deleteHandler(deck.id)} key={deck.id} deck={deck} /> */
-}

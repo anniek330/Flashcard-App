@@ -1,13 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function CardList({ deck, onCardDelete }) {
   const { cards = [] } = deck;
@@ -28,11 +20,10 @@ function CardList({ deck, onCardDelete }) {
           <Link
             to={`/decks/${deck.id}/cards/${card.id}/edit`}
             className="btn btn-secondary mr-2"
-            title="Edit Card"
           >
             <span className="oi oi-pencil" /> Edit
           </Link>
-          <button className="btn btn-danger m-1" title="Delete Card">
+          <button className="btn btn-danger m-1">
             <span
               className="oi oi-trash p-1"
               onClick={() => onCardDelete(card.id)}

@@ -12,7 +12,9 @@ function StudyLayout({ deckId, name, children }) {
             </Link>
           </li>
           <li className="breadcrumb-item">
-            <Link id="link" to={`/decks/${deckId}`}>{name}</Link>
+            <Link id="link" to={`/decks/${deckId}`}>
+              {name}
+            </Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Study

@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import React, { useState } from "react";
 
-function CardForm({ onSubmit, initialState, onDone, doneButtonLabel, submitButtonLabel }) {
-  const [cardFormData, setCardFormData] = useState(initialState);
+function CardForm({
+  onSubmit,
+  initialCardFormData,
+  onDone,
+  doneButtonLabel,
+  submitButtonLabel,
+}) {
+  const [cardFormData, setCardFormData] = useState(initialCardFormData);
 
   const handleChange = ({ target }) => {
     setCardFormData({
@@ -22,6 +19,7 @@ function CardForm({ onSubmit, initialState, onDone, doneButtonLabel, submitButto
   //handle submit button
   function handleSubmit(event) {
     event.preventDefault();
+    event.stopPropagation();
     onSubmit(cardFormData);
   }
   //create a form with two textareas for the card front and card back
@@ -37,7 +35,7 @@ function CardForm({ onSubmit, initialState, onDone, doneButtonLabel, submitButto
               className="form-control"
               rows="3"
               value={cardFormData.front}
-              required={true}
+              required
               placeholder="Front side of card"
               onChange={handleChange}
             />
@@ -49,7 +47,7 @@ function CardForm({ onSubmit, initialState, onDone, doneButtonLabel, submitButto
               name="back"
               className="form-control"
               rows="3"
-              required={true}
+              required
               placeholder="Back side of card"
               value={cardFormData.back}
               onChange={handleChange}

@@ -23,7 +23,9 @@ function DeckForm({ onSubmit, onCancel, initialFormData }) {
       <form onSubmit={handleSubmit} className="deck-form">
         <fieldset>
           <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name" className="form-label">
+              Name
+            </label>
             <input
               type="text"
               id="name"
@@ -36,7 +38,9 @@ function DeckForm({ onSubmit, onCancel, initialFormData }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description" className="form-label">
+              Description
+            </label>
             <textarea
               id="description"
               name="description"

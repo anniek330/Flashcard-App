@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { readCard, readDeck, updateCard } from "../../utils/api";
 import CardForm from "./CardForm";
 
@@ -35,7 +27,7 @@ function EditCard() {
     <CardForm
       onSubmit={handleSubmit}
       onDone={handleDone}
-      initialState={card}
+      initialCardFormData={card}
       doneButtonLabel="Cancel"
       submitButtonLabel="Submit"
     />

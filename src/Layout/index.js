@@ -1,14 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Link,
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import React from "react";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "../utils/Home/Home";
@@ -35,8 +26,8 @@ function Layout() {
           </Route>
           <Route path="/decks/new">
             <DeckCreate />
-          </Route>{" "} 
-         <Route exact path="/decks/:deckId">
+          </Route>{" "}
+          <Route exact path="/decks/:deckId">
             <Deck />
           </Route>
           <Route path="/decks/:deckId/edit">
